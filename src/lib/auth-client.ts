@@ -5,4 +5,4 @@ export const authClient = createAuthClient({
 });
 
 // Correctly export the single unified destructured actions 
-export const { signIn, signUp, useSession } = authClient;
+export const { signIn, signUp, signOut,  useSession } = authClient;

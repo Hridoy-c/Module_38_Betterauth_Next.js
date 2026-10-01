@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { signIn } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 
 type LoginData = {
   email: string;
@@ -38,6 +38,14 @@ export default function SignInPage() {
     router.push("/");
     router.refresh();
   };
+
+  const signInGoogle = async () => {
+    const data = await authClient.signIn.social({
+    provider: "google",
+  
+   
+  });
+  }
 
   const inputClass =
     "w-full rounded border-2 border-[#264143] bg-white px-3 py-3 text-[15px] text-[#264143] outline-none shadow-[3px_4px_0px_1px_#E99F4C] transition-all focus:translate-y-1 focus:shadow-[1px_2px_0px_0px_#E99F4C] disabled:opacity-50";
@@ -105,6 +113,12 @@ export default function SignInPage() {
               </Link>
             </p>
           </form>
+            <button 
+            className="mt-4 w-full rounded-[10px] bg-[#1f6eaf] px-4 py-3.5 text-[15px] font-extrabold text-[#264143] shadow-[3px_3px_0px_0px_#E99F4C] transition-all hover:opacity-90 active:translate-y-1 active:shadow-[1px_2px_0px_0px_#E99F4C] disabled:cursor-not-allowed disabled:opacity-60"
+            onClick={signInGoogle}
+            >
+              Sign in with Google
+            </button>
         </div>
       </div>
     </main>
