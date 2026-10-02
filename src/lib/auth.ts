@@ -17,10 +17,7 @@ export const auth = betterAuth({
     requireEmailVerification: false,
    sendResetPassword: async ({ user, url,  token }: { user:  User; url: string; token: string }, request?: Request
     ): Promise<void> => {
-      if (process.env.NODE_ENV === "development") {
-    console.log(`Reset link for ${user.email}: ${url}`);
-    return;
-  }
+     
       void resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
         to: user.email,
